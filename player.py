@@ -8,11 +8,14 @@ class CircleShape:
         self.radius = radius
         self.position = pygame.Vector2(x, y)
 
-class Player(CircleShape):
+class Player(pygame.sprite.Sprite, CircleShape):
     def __init__(self, x, y):
-        super().__init__(x, y, PLAYER_RADIUS)
-    
+        pygame.sprite.Sprite.__init__(self)
+        CircleShape.__init__(self, x, y, PLAYER_RADIUS)
         self.rotation = 0
+
+        if hasattr(self.__class__, 'containers'):
+            self.add(self.__class__.containers)
 
     # in the player class
     def triangle(self):
