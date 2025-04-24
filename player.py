@@ -1,17 +1,11 @@
 import pygame
+from circleshape import CircleShape
 from constants import PLAYER_RADIUS, PLAYER_TURN_SPEED, PLAYER_SPEED
 
-class CircleShape:
-    def __init__(self, x, y, radius):
-        self.x = x
-        self.y = y
-        self.radius = radius
-        self.position = pygame.Vector2(x, y)
 
-class Player(pygame.sprite.Sprite, CircleShape):
+class Player(CircleShape):
     def __init__(self, x, y):
-        pygame.sprite.Sprite.__init__(self)
-        CircleShape.__init__(self, x, y, PLAYER_RADIUS)
+        super().__init__(x, y, PLAYER_RADIUS)
         self.rotation = 0
 
         if hasattr(self.__class__, 'containers'):

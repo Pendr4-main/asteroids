@@ -2,10 +2,13 @@
 # the open-source pygame library
 # throughout this file
 import pygame
+import sys
+import time
 from constants import *
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+
 
 
 
@@ -45,6 +48,13 @@ def main():
             thing.draw(screen)
         dt = clock.tick(60) / 1000
         updatable.update(dt)
+        for asteroid in asteroids:
+            if player.collision(asteroid):
+                print("Game Over!")
+
+                time.sleep(2)
+
+                sys.exit()
         pygame.display.flip()
         
        
